@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Shoe Store</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="re_enter_password">Re-Enter Password</string>
+    <string name="welcome">Welcome</string>
+    <string name="to_the_shoe_store">To The Shoe Store</string>
+    <string name="Welcome_Phrase">Here you can find the best foot wear for you</string>
+    <string name="instructions">Instructions</string>
+    <string name="Instructions_Text">The App Shows You a List Of Shoes.\nTo Show More Information\nYou Can Click On Each One.</string>
+    <string name="shoe_list">Shoe List</string>
+
+    <string name="Adidas_BRAVADA">Bravada Lifestyle Skateboarding Floral-Print Shoes</string>
+    <string name="Adidas_NOVA_COURT">Maybe you hit the court once a week. Maybe you just love tennis style. Either way, these adidas tennis-inspired shoes have got you. A rubber outsole and textile lining have the comfort angle covered, while the synthetic upper elevates durability. Perforated 3-Stripes add the finishing touch.</string>
+    <string name="Reebok_Female_Shoes">RBK CLASS FTW WOM CORE CLASS SHOES (LOW)</string>
+    <string name="Reebok_PRINCESS">Sleek, comfortable style rules with the women’s Princess shoe. The synthetic leather brings long-lasting support to the outside, while a terry cloth lining softens the next-to-foot feel. The result is a streamlined look that stands the test of time.</string>
+
+    <string name="name">Name: %s</string>
+    <string name="size">Size: %s</string>
+    <string name="company">company: %s</string>
+    <string name="description">Description: %s</string>
+</resources>
