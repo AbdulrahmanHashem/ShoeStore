@@ -1,7 +1,9 @@
 package com.udacity.shoestore.shoelisting
 
+import androidx.databinding.InverseMethod
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.udacity.shoestore.R
 import com.udacity.shoestore.models.Shoe
@@ -37,19 +39,19 @@ class ShoeListViewModel: ViewModel() {
         get() = _shoeList
 
     private val _shoe_name = MutableLiveData<String>()
-    val shoe_name: LiveData<String>
+    val shoe_name: MutableLiveData<String>
         get() = _shoe_name
 
-    private val _shoe_size = MutableLiveData<Double>()
-    val shoe_size: LiveData<Double>
+    private val _shoe_size = MutableLiveData<String>()
+    val shoe_size: MutableLiveData<String>
         get() = _shoe_size
 
     private val _shoe_company = MutableLiveData<String>()
-    val shoe_company: LiveData<String>
+    val shoe_company: MutableLiveData<String>
         get() = _shoe_company
 
     private val _shoe_description = MutableLiveData<String>()
-    val shoe_description: LiveData<String>
+    val shoe_description: MutableLiveData<String>
         get() = _shoe_description
 
 //    private val _shoe_images = MutableLiveData<List<Shoe>>()
@@ -66,31 +68,31 @@ class ShoeListViewModel: ViewModel() {
             Reebok_PRINCESS
         )
         _shoe_name.value = ""
-        _shoe_size.value = 0.0
+        _shoe_size.value = "0.0"
         _shoe_company.value = ""
         _shoe_description.value = ""
     }
 
-    fun saveDetails(name: String, size: String, company: String, description: String): Boolean {
+    fun convert(): Boolean {
         try {
-            size.toDouble()
-            _shoe_name.value = name
-            _shoe_size.value = size.toDouble()
-            _shoe_company.value = company
-            _shoe_description.value = description
+            _shoe_size.value?.toDouble()
             return true
         } catch (e :NumberFormatException) {
             return false
         }
     }
 
-    fun addShoe(name: String? = shoe_name.value,
-                size: Double? = shoe_size.value,
-                company: String? = shoe_company.value,
-                description: String? = shoe_description.value){
-
-        val newShoe = Shoe(name!!, size!!, company!!, description!!, _default_shoe_image)
-
-        _shoeList.value?.add(newShoe)
+    fun addShoe(
+        name: String? = shoe_name.value,
+        size: String? = shoe_size.value,
+        company: String? = shoe_company.value,
+        description: String? = shoe_description.value): Boolean {
+        if (convert()){
+            val newShoe = Shoe(name!!, size!!.toDouble(), company!!, description!!, _default_shoe_image)
+            _shoeList.value?.add(newShoe)
+            return true
+        } else {
+            return false
+        }
     }
 }

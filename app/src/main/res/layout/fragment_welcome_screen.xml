@@ -10,6 +10,7 @@
             type="com.udacity.shoestore.login.LoginRegisterViewModel" />
     </data>
 
+    <!-- The use of ConstraintLayout is to help constrain my views exactly where i need them-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

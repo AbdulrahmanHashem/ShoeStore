@@ -31,16 +31,12 @@ class AddShoeFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(ShoeListViewModel::class.java)
         binding.viewModel = viewModel
+        binding.lifecycleOwner = requireActivity()
 
         navController = (requireActivity().supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment).navController
 
         binding.addShoe.setOnClickListener{
-            if (viewModel.saveDetails(
-                    binding.shoeName.text.toString(),
-                    binding.shoeSize.text.toString(),
-                    binding.shoeCompany.text.toString(),
-                    binding.shoeDescription.text.toString())){
-                viewModel.addShoe()
+            if (viewModel.addShoe()){
                 navController.navigateUp()
             } else {
                 Toast.makeText(requireContext(), "Enter Size Correctly", Toast.LENGTH_SHORT).show()

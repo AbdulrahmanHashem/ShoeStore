@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".login.LoginFragment">
 
+    <!-- The use of ConstraintLayout is to help constrain my views exactly where i need them-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
