@@ -2,6 +2,7 @@ package com.udacity.shoestore
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
 import androidx.drawerlayout.widget.DrawerLayout
@@ -59,10 +60,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         if (navController.currentDestination?.id == R.id.loginFragment){
-            System.exit(0)
+            this.finish()
+//            System.exit(0)
             return false
         } else {
             return NavigationUI.navigateUp(navController, binding.NavDrawer) || super.onSupportNavigateUp()
+        }
+    }
+
+    override fun onBackPressed() {
+        if (navController.currentDestination?.id == R.id.loginFragment){
+            this.finish()
+        } else {
+            super.onBackPressed()
         }
     }
 }

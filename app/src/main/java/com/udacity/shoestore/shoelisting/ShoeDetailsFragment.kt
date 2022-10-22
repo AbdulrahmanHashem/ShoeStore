@@ -36,19 +36,19 @@ class ShoeDetailsFragment : Fragment() {
         }
 
         val name = TextView(requireContext())
-        name.setText(getString(R.string.name, args.shoe.name))
+        name.setText(getString(R.string.name_f, args.shoe.name))
         binding.LinearLayout.addView(name)
 
         val size = TextView(requireContext())
-        size.setText(getString(R.string.size, args.shoe.size.toInt().toString()))
+        size.setText(getString(R.string.size_f, args.shoe.size.toString()))
         binding.LinearLayout.addView(size)
 
         val company = TextView(requireContext())
-        company.setText(getString(R.string.company, args.shoe.company))
+        company.setText(getString(R.string.company_f, args.shoe.company))
         binding.LinearLayout.addView(company)
 
         val description = TextView(requireContext())
-        description.setText(getString(R.string.description, getString(args.shoe.description.toInt())))
+        description.setText(getString(R.string.description_f, args.shoe.description))
         binding.LinearLayout.addView(description)
 
         return binding.root

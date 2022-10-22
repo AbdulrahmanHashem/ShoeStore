@@ -75,6 +75,9 @@
         <action
             android:id="@+id/action_shoeListFragment_to_shoeDetailsFragment"
             app:destination="@id/shoeDetailsFragment" />
+        <action
+            android:id="@+id/action_shoeListFragment_to_addShoeFragment"
+            app:destination="@id/addShoeFragment" />
     </fragment>
     <fragment
         android:id="@+id/shoeDetailsFragment"
@@ -84,4 +87,8 @@
             android:name="shoe"
             app:argType="com.udacity.shoestore.models.Shoe" />
     </fragment>
+    <fragment
+        android:id="@+id/addShoeFragment"
+        android:name="com.udacity.shoestore.shoelisting.AddShoeFragment"
+        android:label="AddShoeFragment" />
 </navigation>
