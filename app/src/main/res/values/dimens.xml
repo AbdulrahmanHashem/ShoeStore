@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    DP res-->
+    <dimen name="DP_16">16dp</dimen>
+    <dimen name="DP_32">32dp</dimen>
+    <dimen name="DP_64">64dp</dimen>
+    <dimen name="DP_8">8dp</dimen>
+    <dimen name="DP_80">80dp</dimen>
+
+<!--    SP res-->
+    <dimen name="SP_64">64sp</dimen>
+    <dimen name="SP_20">20sp</dimen>
+    <dimen name="SP_16">16sp</dimen>
+</resources>

@@ -2,21 +2,17 @@ package com.udacity.shoestore
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.MenuItem
-import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.*
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.udacity.shoestore.databinding.ActivityMainBinding
-import com.udacity.shoestore.login.LoginFragment
-import com.udacity.shoestore.login.LoginFragmentDirections
+
 import com.udacity.shoestore.login.LoginRegisterViewModel
 
 import timber.log.Timber
@@ -33,8 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Timber.plant(Timber.DebugTree())
-
+        
         viewModel = ViewModelProvider(this).get(LoginRegisterViewModel::class.java)
 
         navController = (supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment).navController
@@ -56,23 +51,50 @@ class MainActivity : AppCompatActivity() {
                 binding.NavDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             }
         }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        if (navController.currentDestination?.id == R.id.loginFragment){
+        if ((navController.currentDestination?.id == R.id.loginFragment) or (navController.currentDestination?.id == R.id.shoeListFragment)){
             this.finish()
-//            System.exit(0)
             return false
         } else {
             return NavigationUI.navigateUp(navController, binding.NavDrawer) || super.onSupportNavigateUp()
         }
     }
 
-    override fun onBackPressed() {
-        if (navController.currentDestination?.id == R.id.loginFragment){
-            this.finish()
-        } else {
-            super.onBackPressed()
+    override fun onStart() {
+        super.onStart()
+        val onBackPressedCallback = object:OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                if (navController.currentDestination?.id == R.id.loginFragment){
+                    finish()
+                } else {
+                    onSupportNavigateUp()
+                }
+            }
         }
+        onBackPressedDispatcher.addCallback(onBackPressedCallback)
+
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }

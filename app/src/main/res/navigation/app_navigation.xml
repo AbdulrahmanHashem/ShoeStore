@@ -90,5 +90,7 @@
     <fragment
         android:id="@+id/addShoeFragment"
         android:name="com.udacity.shoestore.shoelisting.AddShoeFragment"
-        android:label="AddShoeFragment" />
+        android:label="AddShoeFragment">
+
+    </fragment>
 </navigation>

@@ -27,23 +27,25 @@ class AddShoeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAddShoeBinding.inflate(inflater, container, false)
-
         viewModel = ViewModelProvider(requireActivity()).get(ShoeListViewModel::class.java)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = requireActivity()
 
         navController = (requireActivity().supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment).navController
 
-        binding.addShoe.setOnClickListener{
-            if (viewModel.addShoe()){
-                navController.navigateUp()
-            } else {
-                Toast.makeText(requireContext(), "Enter Size Correctly", Toast.LENGTH_SHORT).show()
-            }
-        }
+        binding = FragmentAddShoeBinding.inflate(inflater, container, false)
 
-        binding.cancel.setOnClickListener{navController.navigateUp()}
+        with(binding){
+            viewModel = this.viewModel
+
+            addShoe.setOnClickListener{
+                if (viewModel!!.addShoe()){
+                    navController.navigateUp()
+                } else {
+                    Toast.makeText(requireContext(), "Enter Size Correctly", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            cancel.setOnClickListener{navController.navigateUp()}
+        }
         return binding.root
     }
 
