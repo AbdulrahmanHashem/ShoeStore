@@ -25,21 +25,30 @@ class LoginFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(LoginRegisterViewModel::class.java)
 
-        binding.loginRegister.setOnClickListener { view: View ->
-            view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNewLoginFragment())
+        with(binding){
+
+            with(viewModel){
+
+                loginRegister.setOnClickListener { view: View ->
+                    view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNewLoginFragment())
+                }
+
+                loginLogin.setOnClickListener { view: View ->
+                    if (users.get(loginEnterEmail.text.toString()) != null){
+                        if (users.get(loginEnterEmail.text.toString()) == loginEnterPassword.text.toString()){
+                            view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeScreen())
+                            login(loginEnterEmail.text.toString(), loginEnterPassword.text.toString())
+                        }
+                    } else {
+                        Toast.makeText(context, "Wrong Email or Password", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                logout()
+
+            }
+
         }
 
-        binding.loginLogin.setOnClickListener { view: View ->
-            if (viewModel.users.get(binding.loginEnterEmail.text.toString()) != null){
-                if (viewModel.users.get(binding.loginEnterEmail.text.toString()) == binding.loginEnterPassword.text.toString()){
-                    view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeScreen())
-                    viewModel.login(binding.loginEnterEmail.text.toString(), binding.loginEnterPassword.text.toString())
-                }
-            } else {
-                Toast.makeText(context, "Wrong Email or Password", Toast.LENGTH_SHORT).show()
-            }
-        }
-        viewModel.logout()
         return binding.root
     }
 }

@@ -29,27 +29,30 @@ class ShoeDetailsFragment : Fragment() {
 
         args = ShoeDetailsFragmentArgs.fromBundle(requireArguments())
 
-        for (Image in args.shoe.images) {
-            val imageView = ImageView(requireContext())
-            imageView.setImageResource(Image.toInt())
-            binding.LinearLayout.addView(imageView, MATCH_PARENT, 500)
+        with(binding){
+            for (Image in args.shoe.images) {
+                val imageView = ImageView(requireContext())
+                imageView.setImageResource(Image.toInt())
+                LinearLayout.addView(imageView, MATCH_PARENT, 500)
+            }
+
+            val name = TextView(requireContext())
+            name.setText(getString(R.string.name_f, args.shoe.name))
+            LinearLayout.addView(name)
+
+            val size = TextView(requireContext())
+            size.setText(getString(R.string.size_f, args.shoe.size.toString()))
+            LinearLayout.addView(size)
+
+            val company = TextView(requireContext())
+            company.setText(getString(R.string.company_f, args.shoe.company))
+            LinearLayout.addView(company)
+
+            val description = TextView(requireContext())
+            description.setText(getString(R.string.description_f, args.shoe.description))
+            LinearLayout.addView(description)
+
         }
-
-        val name = TextView(requireContext())
-        name.setText(getString(R.string.name_f, args.shoe.name))
-        binding.LinearLayout.addView(name)
-
-        val size = TextView(requireContext())
-        size.setText(getString(R.string.size_f, args.shoe.size.toString()))
-        binding.LinearLayout.addView(size)
-
-        val company = TextView(requireContext())
-        company.setText(getString(R.string.company_f, args.shoe.company))
-        binding.LinearLayout.addView(company)
-
-        val description = TextView(requireContext())
-        description.setText(getString(R.string.description_f, args.shoe.description))
-        binding.LinearLayout.addView(description)
 
         return binding.root
     }

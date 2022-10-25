@@ -32,21 +32,30 @@ class NewLoginFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(LoginRegisterViewModel::class.java)
 
-        binding.registerRegister.setOnClickListener { view: View ->
-            if ((binding.registerEnterEmail.text.toString() != "")
-                and (binding.registerEnterPassword.text.toString() == binding.registerReEnterPassword.text.toString())
-                and (binding.registerEnterPassword.text.toString().length > 8)){
+        with(binding){
 
-                viewModel.registerUser(binding.registerEnterEmail.text.toString(), binding.registerEnterPassword.text.toString())
-                Toast.makeText(context, "Register Successful, You Can Now Login", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(context, "Wrong Email or Password", Toast.LENGTH_SHORT).show()
+            with(viewModel){
+
+                registerRegister.setOnClickListener { view: View ->
+                    if ((registerEnterEmail.text.toString() != "")
+                        and (registerEnterPassword.text.toString() == registerReEnterPassword.text.toString())
+                        and (registerEnterPassword.text.toString().length > 8)){
+
+                        registerUser(registerEnterEmail.text.toString(), registerEnterPassword.text.toString())
+                        Toast.makeText(context, "Register Successful, You Can Now Login", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "Wrong Email or Password", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                registerLogin.setOnClickListener { view: View ->
+                    view.findNavController().navigate(NewLoginFragmentDirections.actionNewLoginFragmentToLoginFragment())
+                }
+
             }
+
         }
 
-        binding.registerLogin.setOnClickListener { view: View ->
-            view.findNavController().navigate(NewLoginFragmentDirections.actionNewLoginFragmentToLoginFragment())
-        }
         return binding.root
     }
 }
