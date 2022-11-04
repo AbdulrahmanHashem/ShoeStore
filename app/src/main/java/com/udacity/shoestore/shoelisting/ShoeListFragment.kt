@@ -76,7 +76,7 @@ class ShoeListFragment : Fragment() {
                         }
                     }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-                    if (currentUser.value.isNullOrEmpty()){
+                    if (currentUser.value.isNullOrEmpty()) {
                         navigate(R.id.loginFragment)
                     }
                 }

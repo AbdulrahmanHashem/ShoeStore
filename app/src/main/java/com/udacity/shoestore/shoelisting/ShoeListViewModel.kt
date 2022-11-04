@@ -87,6 +87,7 @@ class ShoeListViewModel: ViewModel() {
         size: String? = shoe_size.value,
         company: String? = shoe_company.value,
         description: String? = shoe_description.value): Boolean {
+
         if (convert()){
             val newShoe = Shoe(name!!, size!!.toDouble(), company!!, description!!, _default_shoe_image)
             _shoeList.value?.add(newShoe)
